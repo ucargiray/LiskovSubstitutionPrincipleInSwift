@@ -53,7 +53,11 @@ class Street {
 
 // MARK: CORRECT IMPLEMENTATION
 class CorrectBird {
-
+    var typeName : String
+    
+    init(typeName : String) {
+        self.typeName = typeName
+    }
 }
 protocol FlyProtocol {
     func fly()
@@ -84,24 +88,32 @@ class CorrectStreet {
     init(birds: [CorrectBird]) {
         self.birds = birds
     }
+    
+    func checkIfBirdCanFly(the bird : CorrectBird) -> Bool {
+        if bird is FlyProtocol {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func printFullDesriptionAfterScaring(the bird : CorrectBird) {
+        if checkIfBirdCanFly(the: bird) {
+            print("\(bird.typeName) is flying")
+        } else {
+            print("\(bird.typeName) is walking")
+        }
+    }
 
     func scareBirds() {
         for bird in birds {
-            if let bird = bird as? FlyProtocol {
-                bird.fly()
-            } else {
-                if let bird = bird as? WalkProcotol {
-                    bird.walk()
-                }
-                else {
-                    print("Bird is dead")
-                }
-            }
+            printFullDesriptionAfterScaring(the : bird)
         }
     }
 }
 
-let street1 = CorrectStreet(birds: [CorrectPigeon(), CorrectPigeon(), CorrectPenguin()])
+let street1 = CorrectStreet(birds: [CorrectPigeon(typeName: "Pigeon Type 1"), CorrectPigeon(typeName: "Pigeon Type 2"), CorrectPenguin(typeName: "Pengiun Type 1")])
 street1.scareBirds()
 // MARK: CORRECT IMPLEMENTATION
 
