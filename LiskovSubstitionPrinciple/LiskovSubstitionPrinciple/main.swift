@@ -89,12 +89,10 @@ class CorrectStreet {
         self.birds = birds
     }
     
-    func checkIfBirdCanFly(the bird : CorrectBird) -> Bool {
-        if bird is FlyProtocol {
-            return true
-        }
-        else {
-            return false
+    // MAIN FUNCTION
+    func scareBirds() {
+        for bird in birds {
+            printFullDesriptionAfterScaring(the : bird)
         }
     }
     
@@ -105,14 +103,19 @@ class CorrectStreet {
             print("\(bird.typeName) is walking")
         }
     }
-
-    func scareBirds() {
-        for bird in birds {
-            printFullDesriptionAfterScaring(the : bird)
+    
+    func checkIfBirdCanFly(the bird : CorrectBird) -> Bool {
+        if bird is FlyProtocol {
+            return true
+        }
+        else {
+            return false
         }
     }
+    
 }
 
+// RUN THE PROGRAM
 let street1 = CorrectStreet(birds: [CorrectPigeon(typeName: "Pigeon Type 1"), CorrectPigeon(typeName: "Pigeon Type 2"), CorrectPenguin(typeName: "Pengiun Type 1")])
 street1.scareBirds()
 // MARK: CORRECT IMPLEMENTATION
